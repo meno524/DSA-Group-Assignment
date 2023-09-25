@@ -1,0 +1,98 @@
+syntax = "proto3";
+package LibraryPackage;
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+
+
+
+
+service Library{
+rpc addBook(AddBook) returns (google.protobuf.StringValue);
+rpc addUser(AddUser) returns (google.protobuf.StringValue);
+rpc updateBook(UpdateBook) returns (google.protobuf.StringValue);
+rpc removeBook(RemoveBook) returns (google.protobuf.StringValue);
+rpc listAllAvailableBooks(google.protobuf.Empty) returns (stream ListAllAvailableBooks);
+rpc listAllBooks(google.protobuf.Empty) returns (stream ListAllBooks);
+rpc listAllBorrowedBooks(google.protobuf.Empty) returns (stream ListAllBorrowedBooks);
+rpc borrowBooks(BorrowBooks) returns (google.protobuf.StringValue);
+rpc loginMessage(LoginMessage) returns (stream ShowMessage);
+rpc locateBook(LocateBook) returns (stream LocateBook);
+
+}
+
+message AddBook{
+int64 ISBN=1;
+string TiTle = 2;
+string Author = 3;
+string Location = 4;
+string StatusOfBook = 5;
+}
+
+message AddUser{
+int64 StudentID= 1;
+string StudentName = 2;
+string Pword = 3;
+}
+
+message UpdateBook{
+    int64 FISBN=1;
+    int64 NISBN=2;
+    string TiTle = 3;
+    string Author = 4;
+    string Location = 5;
+    string StatusOfBook = 6;
+}
+
+message RemoveBook{
+    int64 ISBN=1;
+}
+
+message ListAllAvailableBooks{
+    int64 ISBN=1;
+    string TiTle = 2;
+    string Author = 3;
+    string Location = 4;
+    string StatusOfBook = 5;
+}
+
+message LocateBook{
+    int64 ISBN=1;
+    string Location = 2;
+}
+
+message ListAllBooks{
+    int64 ISBN=1;
+    string TiTle = 2;
+    string Author = 3;
+    string Location = 4;
+    string StatusOfBook = 5;
+}
+
+message ListAllBorrowedBooks{
+    int64 ISBN=1;
+    string TiTle = 2;
+    string Author = 3;
+    string Location = 4;
+    string StatusOfBook = 5;
+}
+
+message BorrowBooks{
+int64 ISBN = 1;
+int64 StudentID= 2;
+}
+
+message LoginMessage{
+int64 IDname = 1;
+string pwd=2;
+string tableName=3;
+string IdcolumnName=4;
+string NamecolumnName=5;
+}
+
+message ShowMessage{
+    int64 firstC = 1;
+    string SecondC=2;
+ 
+    }
+
